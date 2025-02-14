@@ -142,14 +142,28 @@ function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // const skills = [
+  //   { skill: "HTML5", percentage: 95, imgSrc: "https://cdn.worldvectorlogo.com/logos/html-1.svg" },
+  //   { skill: "CSS3", percentage: 90, imgSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/CSS3_logo.svg/768px-CSS3_logo.svg.png?20210705212817" },
+  //   { skill: "JavaScript", percentage: 85, imgSrc: "https://cdn.worldvectorlogo.com/logos/javascript-1.svg" },
+  //   { skill: "React", percentage: 80, imgSrc: "https://cdn.worldvectorlogo.com/logos/react-2.svg" },
+  //   { skill: "MongoDB", percentage: 75, imgSrc: "https://www.svgrepo.com/show/331488/mongodb.svg" },
+  //   { skill: "Express.js", percentage: 80, imgSrc: "https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" },
+  //   { skill: "Node.js", percentage: 85, imgSrc: "https://www.svgrepo.com/show/303360/nodejs-logo.svg" }
+  // ];
   const skills = [
-    { skill: "HTML5", percentage: 95, imgSrc: "https://cdn.worldvectorlogo.com/logos/html-1.svg" },
-    { skill: "CSS3", percentage: 90, imgSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/CSS3_logo.svg/768px-CSS3_logo.svg.png?20210705212817" },
-    { skill: "JavaScript", percentage: 85, imgSrc: "https://cdn.worldvectorlogo.com/logos/javascript-1.svg" },
-    { skill: "React", percentage: 80, imgSrc: "https://cdn.worldvectorlogo.com/logos/react-2.svg" },
-    { skill: "MongoDB", percentage: 75, imgSrc: "https://www.svgrepo.com/show/331488/mongodb.svg" },
-    { skill: "Express.js", percentage: 80, imgSrc: "https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" },
-    { skill: "Node.js", percentage: 85, imgSrc: "https://www.svgrepo.com/show/303360/nodejs-logo.svg" }
+    'Product Design',
+    'Bootstrap',
+    'UI Design',
+    'Html5',
+    'CSS',
+    'MongoDB',
+    'React',
+    'NodeJS',
+    'ExpressJS',
+    'Front-End Development',
+    'Javascript',
+    'Tailwind'
   ];
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -230,6 +244,7 @@ function Home() {
                 </div>
          </div>
       </div>
+
       <div className="skills" id="skills">
         <div className="skills_head">
         <h1>Skills</h1>
@@ -241,14 +256,37 @@ function Home() {
        Skilled in React.js for frontend, Node.js and Express.js for backend, and MongoDB for efficient data handling.
       </p>
       <div className="skills-container">
-        {skills.map((skill, index) => (
-          <SkillBar
-            key={index}
-            skill={skill.skill}
-            percentage={skill.percentage}
-            imgSrc={skill.imgSrc}
-          />
-        ))}
+      <div style={{ maxWidth: "69rem", margin: "0 auto", }}>
+      <div
+        style={{
+          background: "rgba(24, 24, 27, 0.5)",
+          backdropFilter: "blur(8px)",
+          borderRadius: "1.5rem",
+          padding: "2rem",
+        }}
+      >
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
+          {skills.map((skill, index) => (
+            <span
+              key={index}
+              style={{
+                padding: "0.75rem 1.5rem",
+                background: "rgba(0, 0, 0, 0.4)",
+                borderRadius: "999px",
+                color: "#d1d5db",
+                fontSize: "1rem",
+                cursor: "pointer",
+                transition: "background-color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.target.style.background = "rgba(0, 0, 0, 0.6)")}
+              onMouseLeave={(e) => (e.target.style.background = "rgba(0, 0, 0, 0.4)")}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
       </div>
         </div>
        

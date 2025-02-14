@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
 body{
   margin: 0;
   background-color: #0A0A1F;
@@ -502,6 +503,8 @@ body{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-top: 10%;
+    margin-bottom: 11%;
   }
 
   .skill-bar {
