@@ -11,73 +11,54 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import BlurText from './blur';
 import { useEffect } from "react";
-import {Link as ScrollLink} from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
 
-const SkillBar = ({ skill, percentage, imgSrc }) => (
-  <div className="skill-bar">
-    <div className="skill-header">
-      <div className="skill-info">
-        <img 
-          src={imgSrc} 
-          alt={`${skill} icon`} 
-          className="skill-icon"
-        />
-        <span className="skill-name">{skill}</span>
-      </div>
-      <span className="skill-percentage">{percentage}%</span>
-    </div>
-    <div className="progress-bar-bg">
-      <div 
-        className="progress-bar-fill"
-        style={{ width: `${percentage}%` }}
-      />
-    </div>
-  </div>
-);
+
 
 function Home() {
-
+  
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs.sendForm(
-        'vishak101010', 
-        'template_dnpblgi', 
-        e.target, 
-        'MwfPeF76sgnbXBAA4'
+      'vishak101010',
+      'template_dnpblgi',
+      e.target,
+      'MwfPeF76sgnbXBAA4'
     ).then(
-        (result) => {
-          toast.success('mail sent successfully', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            });
-        }, 
-        (error) => {
-          toast.info('something went wrong !', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            });
-        }
+      (result) => {
+        toast.success('mail sent successfully', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      },
+      (error) => {
+        toast.info('something went wrong !', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
     );
 
     e.target.reset();
-};
+  };
   useEffect(() => {
     const sections = document.querySelectorAll(".skills, .work");
     const workItems = document.querySelectorAll(".work_item1");
@@ -101,7 +82,7 @@ function Home() {
       workItems.forEach((item) => observer.unobserve(item));
     };
   }, []);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.querySelector(".nav");
@@ -168,7 +149,7 @@ function Home() {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       <nav className="nav bd-grid">
         <div className='logo_name'>
           <a href="\" className="nav__logo">Vishak</a>
@@ -180,7 +161,7 @@ function Home() {
             <li className="nav__item"><ScrollLink to="about" smooth={true} duration={500} offset={-70} className="nav__link">About</ScrollLink></li>
             <li className="nav__item"><ScrollLink to="skills" smooth={true} duration={500} offset={-70} className="nav__link">Skills</ScrollLink></li>
             <li className="nav__item"><ScrollLink to="work" smooth={true} duration={500} offset={-70} className="nav__link">Work</ScrollLink></li>
-            <li className="nav__item"><ScrollLink to="contact" smooth={true} duration={500} offset={-70}  className="nav__link">Contact</ScrollLink></li>
+            <li className="nav__item"><ScrollLink to="contact" smooth={true} duration={500} offset={-70} className="nav__link">Contact</ScrollLink></li>
           </ul>
         </div>
 
@@ -204,65 +185,69 @@ function Home() {
           </div>
         </div>
         <div className="hphoto">
-        <motion.div
-      className="himg"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1 }}
-      whileHover={{ scale: 1.2, boxShadow: "0px 15px 40px rgba(0, 0, 0, 0.3)" }}
-      whileTap={{ scale: 1.5, transition: { duration: 0.3 } }} // Expands on touch
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <motion.img
-        src={profile}
-        alt="Profile"
-        className="himg-img"
-        animate={{ opacity: isHovered ? 1 : 0.7 }} // Fades when not hovered
-        transition={{ duration: 0.5 }}
-      />
-    </motion.div>
+          <motion.div
+            className="himg"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            whileHover={{ scale: 1.2, boxShadow: "0px 15px 40px rgba(0, 0, 0, 0.3)" }}
+            whileTap={{ scale: 1.5, transition: { duration: 0.3 } }} // Expands on touch
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <motion.img
+              src={profile}
+              alt="Profile"
+              className="himg-img"
+              animate={{ opacity: isHovered ? 1 : 0.7 }} // Fades when not hovered
+              transition={{ duration: 0.5 }}
+            />
+          </motion.div>
         </div>
       </div>
       <div className="about" id='about'>
-         <div className="about_head">
+        <div className="about_head">
           <h1>About Me</h1>
-         </div>
-         <div className="about_photo">
-            <div className="aphoto">
-              <img src={profile1} alt="" />
-            </div>
+        </div>
+        <div className="about_photo">
+          <div className="aphoto">
+            <img src={profile1} alt="" />
+          </div>
 
-         </div>
-         <div className="about_deatils">
-                <div className="about_d">
-                <h2>I'm Vishakchandran VP</h2>
-                <p>
-                 A passionate MERN Stack Developer skilled in React.js, Node.js,<br /> Express.js, and MongoDB. With hands-on experience
-                  from a six-month <br /> internship and multiple projects, I build responsive, user-friendly <br />web applications. Proficient in Git, AWS, and  Netlify,<br /> I thrive on problem-solving and continuous learning.
-                </p>
-                </div>
-         </div>
+        </div>
+        <div className="about_deatils">
+          <div className="about_d">
+            <h2>I'm Vishakchandran VP</h2>
+            <p>
+              A passionate MERN Stack Developer skilled in React.js, Node.js,<br /> Express.js, and MongoDB. With hands-on experience
+              from a six-month <br /> internship and multiple projects, I build responsive, user-friendly <br />web applications. Proficient in Git, AWS, and  Netlify,<br /> I thrive on problem-solving and continuous learning.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="skills" id="skills">
         <div className="skills_head">
-        <h1>Skills</h1>
+          <h1>Skills</h1>
         </div>
         <div className="skills_deatils">
-        <h2 className="skills-title">Professional Skills</h2>
-      <p className="skills-description">
-      Proficient in MERN Stack development with hands-on experience in building dynamic web applications, RESTful APIs, and database management.
-       Skilled in React.js for frontend, Node.js and Express.js for backend, and MongoDB for efficient data handling.
-      </p>
-      <div className="skills-container">
-      <div style={{ maxWidth: "69rem", margin: "0 auto", }}>
+          <h2 className="skills-title">Professional Skills</h2>
+          <p className="skills-description">
+            Proficient in MERN Stack development with hands-on experience in building dynamic web applications, RESTful APIs, and database management.
+            Skilled in React.js for frontend, Node.js and Express.js for backend, and MongoDB for efficient data handling.
+          </p>
+          <div className="skills-container">
+          <div style={{ maxWidth: "64rem", margin: "0 auto" }}>
       <div
         style={{
           background: "rgba(24, 24, 27, 0.5)",
           backdropFilter: "blur(8px)",
           borderRadius: "1.5rem",
           padding: "2rem",
+          minHeight: "15rem", // Increased height
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
@@ -271,15 +256,16 @@ function Home() {
               key={index}
               style={{
                 padding: "0.75rem 1.5rem",
-                background: "rgba(0, 0, 0, 0.4)",
+                background: hoveredIndex === index ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0.4)",
                 borderRadius: "999px",
                 color: "#d1d5db",
                 fontSize: "1rem",
                 cursor: "pointer",
-                transition: "background-color 0.2s",
+                transition: "background-color 0.2s ease-in-out, transform 0.2s ease-in-out",
+                transform: hoveredIndex === index ? "scale(1.05)" : "scale(1)",
               }}
-              onMouseEnter={(e) => (e.target.style.background = "rgba(0, 0, 0, 0.6)")}
-              onMouseLeave={(e) => (e.target.style.background = "rgba(0, 0, 0, 0.4)")}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               {skill}
             </span>
@@ -287,9 +273,9 @@ function Home() {
         </div>
       </div>
     </div>
-      </div>
+          </div>
         </div>
-       
+
       </div>
       <div className="work" id="work">
         <div className="work_head">
@@ -297,16 +283,16 @@ function Home() {
         </div>
         <div className="work_container">
           <div className="work_item1">
-          <img src={work1} alt="" />
+            <img src={work1} alt="" />
           </div>
           <div className="work_item1">
-          <img src={work2} alt="" />
+            <img src={work2} alt="" />
           </div>
           <div className="work_item1">
-          <img src={work3} alt="" />
+            <img src={work3} alt="" />
           </div>
           <div className="work_item1">
-          <img src={work4} alt="" />
+            <img src={work4} alt="" />
           </div>
         </div>
       </div>
@@ -328,11 +314,11 @@ function Home() {
         </div>
       </div>
 
-      
+
       <footer className="footer">
         <div className="footer_container">
           <div className="pvt">
-          <p>&copy; {new Date().getFullYear()} Vishak. All Rights Reserved.</p> 
+            <p>&copy; {new Date().getFullYear()} Vishak. All Rights Reserved.</p>
           </div>
           <div className="footer_social">
             <a href="https://github.com/vishag10" target="_blank" rel="noopener noreferrer">
